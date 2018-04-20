@@ -1,0 +1,782 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    position: relative;
+    .body_cls{
+        /* Position the image container (needed to position the left and right arrows) */
+        .container {
+          // position: relative;
+          padding: 0;
+          .slider-main{
+                float: right;
+                position: relative;
+                // margin: 20px 0;
+                .mySlides {
+                    display: none;
+                    img {
+                        vertical-align: middle;
+                    }
+
+                    /* Number text (1/3 etc) */
+                    .numbertext {
+                        color: #f2f2f2;
+                        font-size: 12px;
+                        padding: 8px 12px;
+                        position: absolute;
+                        top: 0;
+                        }
+                        .img-content{
+                            position: absolute;
+                            top: 50%;
+                            right: 50%;
+                            text-align: center;
+                            transform: translate(50%,-50%);
+                            @include transition(all 0.25s ease-in-out);
+                            h1{
+                                color: #fff;
+                            }
+                            .btn
+                            {
+                                z-index: 99999;
+                                @include at-query($max , $xs) { 
+                                    padding: 2px 2px;  
+                                }
+                            }
+                        }
+                        &:nth-child(1),&:nth-child(6),&:nth-child(3){
+                                .img-content{
+                                    right:25%;
+                                    text-align: center;
+                                }
+                        }
+                    }
+                    @include at-query($max , $pre-sm) { 
+                        margin: 20px auto;
+                    }
+                    .prev,
+                    .next {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 50%;
+                        z-index: 999999;
+                        width: auto;
+                        padding: 16px;
+                        margin-top: -50px;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 20px;
+                        border-radius: 0 3px 3px 0;
+                        user-select: none;
+                        -webkit-user-select: none;
+                    }
+
+                    /* Position the "next button" to the right */
+                    .next {
+                    right: 0;
+                    border-radius: 3px 0 0 3px;
+                    }
+
+                    /* On hover, add a black background color with a little bit see-through */
+                    .prev:hover,
+                    .next:hover {
+                    background-color: rgba(0, 0, 0, 0.8);
+                    }
+            }
+            .thumbnail{
+                /* Six columns side by side */
+                float: left;
+                position: relative;
+                @include at-query($max , $pre-sm) { 
+                    float: none;
+                    margin: 0 auto;
+                    .thumb-imgs{
+                        margin:0 10px 0px 10px !important;
+                    }
+                }
+                .thumb-imgs{
+                    margin:10px 0 10px 0 !important;
+                }
+                .pc_imgs_show{
+                    .prev_thumb,.next_thumb
+                    {
+                        position: absolute;
+                        right: 50%;
+                        z-index: 9999;
+                        padding: 5px;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #fff;
+                        }
+                    }
+                    
+                    .prev_thumb{
+                        top:100%;
+                        transform: translate(50%,-50%);
+                    }
+                    .next_thumb{  
+                        top: 0; 
+                        transform: translate(50%,-50%);
+                    }
+                    @include at-query($max , $xs) { 
+                        display: none;
+                    }     
+                }
+                .mobile_imgs_show{
+                    @include at-query($max, $xs) { 
+                        display: block;
+                    }
+                    @include at-query($min, $xs) { 
+                        display: none;
+                    }
+                    .prev_thumb,.next_thumb
+                    {
+                        position: absolute;
+                        top: 90%;
+                        z-index: 9999;
+                        padding: 5px;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #fff;
+                        }
+                    }
+                    .thumb-imgs{
+                        margin:10px 0 10px 0;
+                    }
+                    .prev_thumb{
+                        right: 98%;
+                        transform: translate(50%,-50%);
+                    }
+                    .next_thumb{  
+                        right: 2%;
+                        transform: translate(50%,-50%);
+                    }
+                }
+
+            }
+            /* Container for image text */
+            .caption-container {
+              text-align: center;
+              background-color: #222;
+              padding: 2px 16px;
+              color: white;
+            }
+        }
+        
+
+        // .row:after {
+        //   content: "";
+        //   display: table;
+        //   clear: both;
+        // }
+    }
+    * {
+        box-sizing: border-box;
+    }
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+        opacity: 0.4;
+    }
+    .active, .demo:hover {
+        opacity: 1;
+    }
+    // .dis_none{
+    //     display: none;
+    // }
+    // .dis_block{ 
+    //     display: block;
+    // }
+
+    /* ###################################################################################################
+    Tab Block 
+    SCSS
+     ###################################################################################################*/
+    .tab-info
+    {
+        margin: 50px auto;
+        h1{
+            text-align: center;
+        }
+
+            #tabs{
+                border: none;
+                p{
+                    margin: 10px 0;
+                }
+                // ul{
+                //     background: transparent;
+                //     border: none;
+                //     text-align: center;
+                //     margin: 20px 0;
+                //     .ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active a
+                //     {
+                //         color: #000;
+                //         background-color: #bfbfbf;
+                //         font-weight: 700;
+                //     }
+                //     li{
+                //         background: transparent !important;
+                //         border: none !important;
+                //         border-radius: unset;
+                //         display: inline;
+                //         padding: 0 10px;
+                //         a{
+                //             padding:10px 20px;
+                //             color: #bfbfbf;
+                //                 font-weight: 700;
+                //                 &:hover{
+                //                     color: #000;   
+                //                     background-color: #bfbfbf;
+                //             } 
+                //         }
+                         
+                //     }
+                // }
+                #li_tab3{
+                    display: none;
+                }
+
+                #accordion{
+                //     border: 1px solid #000;
+                //     padding: 20px;
+                //     h3{
+                //         cursor: pointer;
+                //     }
+                //     .ui-accordion-header.ui-corner-top.ui-state-default.ui-accordion-header-active.ui-state-active.ui-accordion-icons{
+                //         background-color: #bfbfbf;
+                //     }
+                //     #accordion_another{
+                //         padding: 25px 25px;
+                //         border: 1px solid #bfbfbf;
+                //         ul{
+                //             text-align: left;
+                //              list-style-type: circle;
+                //             li{
+                //                 display: block;
+                //             }
+                //         }
+                //     }
+                    .ui-accordion-content{
+                        img{
+                            max-width: 80px;
+                        }
+                    }
+                }
+            }
+           
+    }
+    /* ###################################################################################################
+    Date Time Picker
+     ###################################################################################################*/
+    .dt_module{
+        h1{
+            text-align: center;
+        }
+        input{
+            margin: 10px 20px;
+        }
+    }
+    // #ui-datepicker-div{
+    //     top: 100% !important;
+    //     left: 3% !important;
+    // }
+       .ui-datepicker-calendar 
+        {
+        tbody
+        {
+            // tr{
+            //     td:first-child, td:last-child{
+            //         opacity: 0.35;
+            //         cursor: pointer !important;
+            //         a,span{
+            //             cursor: pointer !important;
+            //              opacity: 0.35;
+            //             } 
+            //     }
+            // }
+            .national_holidays_day{
+                a,span{
+                    // background-color: #F00;
+                    color: #fff;
+                    background: #000;
+
+                    } 
+            }
+           .ofc_holiday_day
+            {
+                a,span{
+                    // background-color: #F00;
+                    color: #fff;
+                    background: #20B2AA;
+
+                    } 
+            }
+            
+                tr:nth-child(1), tr:nth-child(3), {
+
+                    td:last-child{
+                        a,span{
+                            // background-color: #F00;
+                            color: #fff;
+                            background: #000;
+                            } 
+                    }
+                }
+            }
+        }
+        #ofc
+            {
+                .fa{
+                    color: #b1e4e1;
+                }
+            }
+            #nat
+            {
+                .fa{
+                    color: #a6a6a6;
+                }
+            }
+    }
+    /* #########################################################################################################
+    File Upload Module scss 
+    ######################################################################################################### */
+    .file_upload_module{
+        label{
+            font-weight: 700;
+        }
+        #img_error,#file_upload_error,#doc_error{
+            color: red;
+        }
+        #add,.remove{
+            .fa{
+                padding: 10px;
+                font-size: 20px;
+                &:hover{
+                    background-color: #bfbfbf;
+                }
+            }
+            
+        }
+    } 
+    div[id^="file_upload_error"] {
+        color: #f00;
+    }
+    
+    
+    /* #########################################################################################################
+    Pop-Up Module scss 
+    ######################################################################################################### */
+    .popup_module{
+        display: none;
+            // margin: 50px 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+        h1{
+            text-align: center;
+        }
+            .form-detail{
+                background-color: #fff;
+                    max-width: 700px;
+                    box-shadow: 0 0 30px #555555;
+                    padding: 50px;
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    right: 50%;
+                    margin: 0 auto;
+                    transform: translate(50%,-50%);
+                    img{
+                            display: block;
+                            margin: 20px auto;
+                            max-width: 85px;
+                            max-height: 78px;
+                    }
+            .topright{
+                position: absolute;   
+                top: -18px;
+                right: -21px;
+                font-size: 20px;
+                a{
+                        border: 1px solid #fff;
+                        background-color: #000;
+                        border-radius: 30px;
+                        padding: 8px 13px;
+                        color: #fff;
+                }
+            }
+            h2{
+                text-align: center;
+            }
+            .form-subscribe
+            {
+                input[type=text]{
+                    width: 100% !important;
+                }
+                .btn--secondary{
+                    background-color: #000;
+                    border: 1px solid #000;
+                        padding: 7px 14px;
+                    &:hover{
+                        background-color: #fff;
+                        color: #000;
+                    }
+                }
+                .email-error{
+                    color: #f00;
+                }
+                .grid__item{
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+            }
+            
+        }
+    }
+    /* #########################################################################################################
+    Registration Form SCSS
+    ######################################################################################################### */
+    .form_group{   
+       margin: 10px 0;
+       .three-quarters, .one-quarter{
+            margin:0 0 10px 0;
+       }
+       .btn{
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #000;
+            @include transition(all 0.25s ease-in-out);
+            &:hover{
+                color: #000;
+                background-color: #fff;
+            }
+        }
+        input{
+            &:hover{
+                .error{
+                    display: block;
+                }
+            }
+        }
+        label.error, .select-error.error{
+            width: 100%;
+            background-color: #ffcccc ;
+            color: #f00 ;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px 5px;
+            z-index: 1;
+            margin-left: 10px;
+            position: relative;
+            // top: -5px;
+            // left: 110%;
+            // &:after{
+            //     content: "";
+            //     position: absolute;
+            //     top: 50%;
+            //     right: 100%;
+            //     margin-top: -5px;
+            //     border-width: 5px;
+            //     border-style: solid;
+            //     border-color: transparent #f00 transparent transparent;
+            // }
+        }
+        [class^="error_tooltip"]{
+            display: none;
+        }
+        .drop-down { 
+            position: relative;  
+            display: inline-block;    
+            width: auto;       
+            margin-top: 0;   
+            font-family: verdana;    
+            select {   
+                display: none;    
+            }  
+            .select-list {   
+                position: absolute;     
+                top: 0;      
+                left: 0;     
+                z-index: 1;    
+                margin-top: 40px;    
+                padding: 0;         
+                background-color: #fff;  
+                li {   
+                    display: none; 
+                    span {  
+                        display: inline-block;      
+                        min-height: 40px;        
+                        min-width: 280px;      
+                        width: 100%;        
+                        padding: 5px 15px 5px 35px;     
+                        background-color: #D3D3D3;     
+                        background-position: left 10px center;   
+                        background-repeat: no-repeat;       
+                        font-size: 16px;       
+                        text-align: left;       
+                        color: #000;        
+                        opacity: 0.7;     
+                        cursor: pointer; 
+                        box-sizing: border-box;    
+                        &:hover, &:focus{
+                            opacity: 1
+                    } 
+                }  
+    
+            }    
+        }   
+        .button{
+            border: 1px solid #DCDCDC;
+        }
+    } 
+    .down{
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    i {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+    .select-list-link{
+        margin-left: 20px;
+        margin-right: 5px;
+    }
+    .tooltip_show{
+        .tooltip_err{
+            display: none;
+            
+        }
+        &:hover{
+            .tooltip_err{
+                display: inline;
+                background: #555555;
+                color: #fff;
+            }
+        }
+    }
+    
+}
+.progress {
+    display: block;
+    text-align: center;
+    width: 0;
+    height: 30px;
+    background: #595959;
+    transition: width .3s;
+}
+.progress.hide {
+    opacity: 0;
+    transition: opacity 1.4s;
+}
+     /* #########################################################################################################
+    datatable Form SCSS
+    ######################################################################################################### */
+    #datatable{
+        .body_cls{
+            z-index: 20;
+            #wrapper{
+                .save
+                {
+                    display: none;
+                }
+                tfoot {
+                    display: table-header-group;
+                }
+
+                a.paginate_button {
+                    border: 1px solid #000;
+                    background: #58af76;
+                    color: #fff;
+                    padding: 0 5px;
+                    margin: 0 3px;
+                    cursor: pointer;
+                    @include transition(all 0.25s ease-in-out);
+                    &:hover{
+                        background: #fff;
+                        color: #000;
+                    }
+                }
+                a.paginate_button.current
+                {
+                    background: #fff;
+                        color: #000;
+                }
+                /*table,th,tr,td{
+                    border: none;
+                }*/
+                .edit, .delete, .add,.save, .info{
+                    background-color: #000;
+                    color: #fff;
+                    border: none;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    margin: 0 2px;
+                }
+                .add, .save{
+                    background-color: #58af76 ;
+                }
+                .edit{
+                    background-color: #466caf ;
+                }
+                .delete{
+                    background-color: #ab5555 ;
+                }
+                .info{
+                    background-color: #806969  ;
+                }
+                
+            }
+            .odd{
+                background-color: #dacece42;
+            }
+            
+        }
+        
+        .info_popup{
+            display: none;
+            z-index: 900;
+                // margin: 50px 0;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                right: 0;
+            h1{
+                text-align: center;
+            }
+                .form-detail{
+                    background-color: #fff;
+                        max-width: 330px;
+                        box-shadow: 0 0 30px #555555;
+                        padding: 50px;
+                        width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        right: 50%;
+                        margin: 0 auto;
+                        transform: translate(50%,-50%);
+                        img{
+                                display: block;
+                                margin: 20px auto;
+                                max-width: 85px;
+                                max-height: 78px;
+                        }
+                .topright{
+                    position: absolute;   
+                    top: -18px;
+                    right: -21px;
+                    font-size: 20px;
+                    a{
+                            border: 1px solid #fff;
+                            background-color: #000;
+                            border-radius: 30px;
+                            padding: 8px 13px;
+                            color: #fff;
+                    }
+                }
+                h2{
+                    text-align: center;
+                }
+                .form-subscribe
+                {
+                    input[type=text]{
+                        width: 100% !important;
+                    }
+                    .btn--secondary{
+                        background-color: #000;
+                        border: 1px solid #000;
+                            padding: 7px 14px;
+                        &:hover{
+                            background-color: #fff;
+                            color: #000;
+                        }
+                    }
+                    .email-error{
+                        color: #f00;
+                    }
+                }
+                
+            }
+        }
+
+        .popup_module{
+            display: none;
+                // margin: 50px 0;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                right: 0;
+            h1{
+                text-align: center;
+            }
+                .form-detail{
+                    background-color: #fff;
+                        max-width: 700px;
+                        box-shadow: 0 0 30px #555555;
+                        padding: 50px;
+                        width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        right: 50%;
+                        margin: 0 auto;
+                        transform: translate(50%,-50%);
+                        img{
+                                display: block;
+                                margin: 20px auto;
+                                max-width: 85px;
+                                max-height: 78px;
+                        }
+                .topright{
+                    position: absolute;   
+                    top: -18px;
+                    right: -21px;
+                    font-size: 20px;
+                    a{
+                            border: 1px solid #fff;
+                            background-color: #000;
+                            border-radius: 30px;
+                            padding: 8px 13px;
+                            color: #fff;
+                    }
+                }
+                h2{
+                    text-align: center;
+                }
+                .form-subscribe
+                {
+                    input[type=text]{
+                        width: 100% !important;
+                    }
+                    .btn--secondary{
+                        background-color: #000;
+                        border: 1px solid #000;
+                            padding: 7px 14px;
+                        &:hover{
+                            background-color: #fff;
+                            color: #000;
+                        }
+                    }
+                    .email-error{
+                        color: #f00;
+                    }
+                    .grid__item{
+                        padding-left: 0px;
+                        padding-right: 0px;
+                    }
+                }
+                
+            }
+        }
+
+
+    }
+    /*#########################################################################################################
+    Extra add remove class scss 
+    ######################################################################################################### */
+    .error_cls{
+        border: 1px solid #f00;
+    }

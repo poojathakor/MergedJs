@@ -1,0 +1,227 @@
+    /*============================================================================
+      #Sass Mixins
+    ==============================================================================*/
+
+    .clearfix {
+        &:after {
+            content: '';
+            display: table;
+            clear: both; 
+        }
+    }
+
+    @mixin clearfix() {
+        &:after {
+            content: '';
+            display: table;
+            clear: both; 
+        }
+    }
+
+    @mixin prefixer($property, $value, $prefixes) {
+      @each $prefix in $prefixes {
+        @if $prefix == webkit {
+          -webkit-#{$property}: $value;
+        } @else if $prefix == moz {
+          -moz-#{$property}: $value;
+        } @else if $prefix == o {
+          -o-#{$property}: $value;
+        } @else if $prefix == spec {
+          #{$property}: $value;
+        } @else  {
+          @warn "Unrecognized prefix: #{$prefix}";
+        }
+      }
+    }
+
+    @mixin animation($animations...) {
+      @include prefixer(animation, $animations, webkit moz spec);
+    }
+
+
+    @mixin transform($transform) {
+      @include prefixer(transform, $transform, webkit moz spec);
+    }
+
+    @mixin transform_origin($origin) {
+      @include prefixer(transform-origin, $origin, webkit moz spec);
+    }
+
+    @mixin user-select($value: none) {
+      @include prefixer(user-select, $value, webkit moz spec);
+    }
+
+    @mixin backface($visibility: hidden) {
+      @include prefixer(backface-visibility, $visibility, webkit moz spec);
+    }
+
+    @mixin transition($properties...) {
+      // Fix for vendor-prefix transform property
+      $needs-prefixes: false;
+      $webkit: ();
+      $moz: ();
+      $spec: ();
+
+      // Create lists for vendor-prefixed transform
+      @each $list in $properties {
+        @if nth($list, 1) == "transform" {
+          $needs-prefixes: true;
+          $list1: -webkit-transform;
+          $list2: -moz-transform;
+          $list3: ();
+
+          @each $var in $list {
+            $list3: join($list3, $var);
+
+            @if $var != "transform" {
+              $list1: join($list1, $var);
+              $list2: join($list2, $var);
+            }
+          }
+
+          $webkit: append($webkit, $list1);
+          $moz:    append($moz,    $list2);
+          $spec:   append($spec,   $list3);
+        } @else {
+          $webkit: append($webkit, $list, comma);
+          $moz:    append($moz,    $list, comma);	    
+          $spec:   append($spec,   $list, comma);
+        }
+      }
+
+      @if $needs-prefixes {
+        -webkit-transition: $webkit;
+              -moz-transition: $moz;
+                  transition: $spec;
+      } @else {
+        @if length($properties) >= 1 {
+        @include prefixer(transition, $properties, webkit moz spec);
+        } @else {
+          $properties: all 0.15s ease-out 0s;
+          @include prefixer(transition, $properties, webkit moz spec);
+        }
+      }
+    }
+
+    @mixin transition-property($properties...) {
+      -webkit-transition-property: transition-property-names($properties, "webkit");
+        -moz-transition-property: transition-property-names($properties, "moz");
+              transition-property: transition-property-names($properties, false);
+    }
+
+    @mixin transition-duration($times...) {
+      @include prefixer(transition-duration, $times, webkit moz spec);
+    }
+
+    @mixin transition-timing-function($motions...) {
+      @include prefixer(transition-timing-function, $motions, webkit moz spec);
+    }
+
+    @mixin transition-delay($times...) {
+      @include prefixer(transition-delay, $times, webkit moz spec);
+    }
+
+
+    @mixin appearance($appearance) {
+      @include prefixer(appearance, $appearance, webkit moz spec);
+    }
+
+    @mixin border-radius($bradius) {
+      @include prefixer(border-radius, $bradius, webkit moz spec);
+    }
+
+    @mixin box-sizing($borderbox) {
+      @include prefixer(box-sizing, $borderbox, webkit moz spec);
+    }
+
+    @mixin transition-timing($timing) {
+      @include prefixer(transition-timing-function, $timing, webkit moz spec);
+    }
+
+    @function em($target, $context: $baseFontSize) {
+      @if $target == 0 {
+        @return 0;
+      }
+      @return $target / $context + 0em;
+    }
+
+    @function color-control($color) {
+      @if (lightness( $color ) > 40) {
+        @return #000;
+      }
+      @else {
+        @return #fff;
+      }
+    }
+
+
+    @mixin placeholder ($plFontSize , $plcolor , $transform , $opacity , $weight) {
+      &::-webkit-input-placeholder {font-size:$plFontSize; color:$plcolor; text-transform:$transform; opacity:$opacity; font-weight:$weight}
+      &:-moz-placeholder           {font-size:$plFontSize; color:$plcolor; text-transform:$transform; opacity:$opacity; font-weight:$weight}
+      &::-moz-placeholder          {font-size:$plFontSize; color:$plcolor; text-transform:$transform; opacity:$opacity; font-weight:$weight}
+      &:-ms-input-placeholder      {font-size:$plFontSize; color:$plcolor; text-transform:$transform; opacity:$opacity; font-weight:$weight}  
+    }
+
+    @mixin placeholder-focus{
+      &:focus::-webkit-input-placeholder { color:transparent; }
+      &:focus:-moz-placeholder { color:transparent; }
+      &:focus::-moz-placeholder { color:transparent; }
+      &:focus:-ms-input-placeholder { color:transparent; }
+    }
+
+    @mixin background-opacity($bgcolor, $opacity) {
+        background: $bgcolor;
+        background-color: rgba($bgcolor, $opacity);
+    }
+
+    @mixin flexbox() {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    @mixin align-items($align){
+      -webkit-box-align: $align;
+      -webkit-flex-align: $align;
+      -ms-flex-align: $align;
+      -webkit-align-items: $align;
+      align-items: $align;
+    }
+    @mixin flex-direction($direction){
+      flex-direction: $direction;
+      -webkit-flex-direction: $direction;
+    }
+    @mixin flex-wrap($wrap){
+      flex-wrap: $wrap;
+      -webkit-flex-wrap: $wrap;
+    }
+
+    @mixin promote-layer($properties: transform) {
+      -webkit-transform: translateZ(0); // translateZ hack
+      will-change: $properties; // spec
+    }
+
+    $min: min-width;
+    $max: max-width;
+    @mixin at-query ($constraint_, $viewport1_, $viewport2_:null) {
+    $constraint: $constraint_; $viewport1: $viewport1_; $viewport2: $viewport2_;
+      @if type-of($constraint_) == number {
+        $viewport1 : $constraint_; $viewport2 : $viewport1_; $constraint : null;
+      }
+      @if $constraint == $min {
+        @media screen and ($min: $viewport1) {
+          @content;
+        }
+      } @else if $constraint == $max {
+        @media screen and ($max: $viewport1) {
+          @content;
+        }
+      } @else {
+        @media screen and ($min: $viewport1) and ($max: $viewport2) {
+          @content;
+        }
+      }
+    }
+
