@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <link href="assets/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+        
+</head>
+<body>
+    <div class="body_cls file_upload_module">
+        <div class="container">
+            <h1> File Upload Module </h1>
+            <h6>
+                Definition: <b>File Uploads and Validation-</b>
+a.  There should be two file upload inputs. Both are required fields i.e. compulsory.
+b.  First file should be Image upload only PNG files allowed.
+c.  Second file should be Word document upload with minimum file size 10MB. (It must be a word document. Any other type of file (for example zip) save using .doc or .docx extension should not be uploaded.
+d.  There should be a link “Add More”. When user click on it, one more file upload box should be added to page and it should allow either image or word document.
+
+            </h6>
+            <form  class="file_upload_form">
+                <div class="file_upload control">
+                    <div class="grid">
+                        <div class="grid__item one-third">
+                            <label> Image Upload:</label>
+                            <input type="file" name="img_upload[]" id="img_upload"/>
+                            <div id="img_error"></div>
+                        </div>
+                         <div class="grid__item one-third">
+                            <label>Docx Upload:</label>
+                            <input type="file" name="doc_upload[]" id="doc_upload"/>
+                            <div id="doc_error"></div>
+                            
+                        </div>
+                        <div class="grid__item one-third">
+                            <label>Add</label>
+                                <p><button type="button" id="add" ><i class="fa fa-plus"></i></button></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            
+
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/js/custom.js">
+        
+    </script>
+</body>
+</html>

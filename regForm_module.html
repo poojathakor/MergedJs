@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <link href="assets/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/js/jquery-ui-1.12.1.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="assets/js/jquery-1.12.4.js"></script> 
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+     <script src="assets/js/jquery-ui-1.12.1.js"></script>
+     
+</head>
+<body>
+    
+    <div class="body_cls">
+        <div class="container">
+            <h1> Registration Form Module </h1>
+            <h6>
+                Definition: <b>JQuery UI-</b>
+            <br>
+            <b>a.</b>  There should be a registration form with Full Name(textbox, required), Gender (radio button, required), Age (selectmenu, required), Email(textbox), Mobile(textbox), Technology (selectmenu, required), Hobby (textbox, required, auto complete). User must enter either email or mobile. There should be validation for valid email and mobile. Full name cannot contain numbers or special character. Technology dropdown must contain technology Logo icons and its name (Like PHP, JQuery, Shopify etc).<br>
+            <b>b.</b>  There should be tooltip for every element in form, which display required data validation for that element and this tooltip should be display on hover of the element. In case of wrong data or validation mismatch, the background of tooltip should be light red and error message should be display in tooltip.<br>
+            </h6>
+            <form  class="reg_form_cls" id="reg_form">
+                <div class="form">
+                        <div class="grid__item one-whole">
+                            <div class="form_group">
+                                <div class="grid">
+                                    <div class="grid__item one-quarter">
+                                        <label> Full Name</label>
+                                    </div>
+                                    <div class=" grid__item three-quarters">
+                                        <span class="tooltip_show">
+                                            <input type="text" name="name" id="name" title="Please Enter valid Full Name" required="" />
+                                            <label for="name" class="error tooltip_err" >Please enter your firstname</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form_group" >
+                                    <div class="grid">
+                                        <div class=" grid__item one-quarter">
+                                            <label class="one-quarter">Gender:</label>
+                                        </div>
+                                        <div class=" grid__item three-quarters" id="gen_id">
+                                            <span class="tooltip_show">
+                                                <input type="radio" name="gender" title="Please select Gender"/>Male
+                                                <input type="radio" name="gender" id="female" title="Please select Gender"/>Female
+                                                <label for="gender" class="error tooltip_err">Please select your gender</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <label>Age:</label>
+                                        </div>
+                                        <div class="grid__item three-quarters">
+                                            <span class="tooltip_show">
+                                                <select class="age" name="age" id="age" title="Please select Age">
+                                                    <option value="" id="">--select--</option>
+                                                </select>
+                                                <label for="age" class="error tooltip_err">Please provide your age</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <label>Email:</label>
+                                        </div>
+                                          <div class="grid__item three-quarters">
+                                            <span class="tooltip_show">
+                                                <input type="text" class="contact-grp" title="Please enter Valid Email" id="email" name="email"/>
+                                                <label for="email" class="error tooltip_err">Please enter a valid email address</label>
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <label >Mobile:</label>
+                                        </div>
+                                        <div class="grid__item three-quarters">
+                                            <span class="tooltip_show">
+                                                <input type="text" class="contact-grp" title="Please enter Mobile number" id="mobile" name="mobile"/>
+                                                <label for="mobile" class="error tooltip_err">Please enter Mobile number</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <label>Technology:</label>
+                                        </div>
+                                <!-- <div class="technology_dropdown">
+                                    <select class="technology" name="technology" id="technology">
+                                        <option value="">--select--</option>
+                                        <option value="PHP" style="background-image:url(assets/php.png);"> PHP</option>
+                                        <option value="HTML" style="background-image:url(assets/html.png);"> HTML</option>
+                                        <option value="SHOPIFY" style="background-image:url(assets/shopify.png);"> SHOPIFY</option>
+                                        <option value="JAVA" style="background-image:url(assets/java.png);"> JAVA</option>
+                                    </select>
+                                </div> -->
+                                        <div class="grid__item tooltip_show three-quarters">
+                                            <div class="drop-down">
+                                               <select name="options" id="options" title="Please select technology">     
+                                                        <option class="" value="" background-repeat: no-repeat;">--Select--</option> 
+                                                        <option class="php" value="php" style="background-image:url('assets/php.png');background-repeat: no-repeat;">PHP</option>        
+                                                        <option class="html" value="html" style="background-image:url('assets/html.png'); background-repeat: no-repeat;">HTML</option>    
+                                                        <option class="java" value="java" style="background-image:url('assets/java.png') ;background-repeat:no-repeat;">JAVA</option>    
+                                                </select> 
+                                                
+                                            </div> 
+                                            <span class="select-error"></span>
+                                            <span class="select-error error tooltip_err">Please select technology</span>
+                                            <!-- <input type="text" name="tec_hide" id="tec_hide" /> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <label for="hobby">Hobby:</label>
+                                        </div>
+                                        <div class="grid__item three-quarters">
+                                            <span class="tooltip_show">
+                                                <input type="text" id="hobby" title="Please enter Hobby" name="hobby"/>
+                                                <label for="hobby" class="error tooltip_err ">Please enter your hobby</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="form_group">
+                                    <div class="grid">
+                                        <div class="grid__item one-quarter">
+                                            <input type="submit" class="btn" id="submit" name="submit"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+            </form>
+            <a href="javascript:void(0);" src="file/30mb.pdf" class="download"><h2 class="fa fa-download" aria-hidden="true"></h2></a>
+            <div class="progress"></div>
+            <div class="perc"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+
+<script type="text/javascript">
+ 
+   
+</script>
+</body>
+</html>
